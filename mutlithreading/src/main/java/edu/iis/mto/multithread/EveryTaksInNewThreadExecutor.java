@@ -6,8 +6,7 @@ public class EveryTaksInNewThreadExecutor implements Executor {
 
     @Override
     public void execute(Runnable command) {
-        // TODO Auto-generated method stub
-
+        command.run();
     }
 
 }
