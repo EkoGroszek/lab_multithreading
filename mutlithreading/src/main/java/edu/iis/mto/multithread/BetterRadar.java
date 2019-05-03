@@ -4,7 +4,7 @@ public class BetterRadar {
 
     private PatriotBattery battery;
     private RocketLauncher launcher;
-    private int rocketsToLaunch;
+    private int rocketsToLaunch = 1;
 
     public BetterRadar(PatriotBattery battery, RocketLauncher rocketLauncher) {
         this.battery = battery;

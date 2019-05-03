@@ -22,4 +22,15 @@ public class RadarTest {
         verify(batteryMock).launchPatriot();
     }
 
+    @Test
+    @Repeat(times = 1000)
+    public void launchPatriotOnceWhenNoticesAScudMissleUsingBetterRadarAndSimpleLaucnher() throws InterruptedException {
+        PatriotBattery batteryMock = mock(PatriotBattery.class);
+        SimpleLauncher launcher = new SimpleLauncher();
+        BetterRadar radar = new BetterRadar(batteryMock, launcher);
+        radar.notice(new Scud());
+        verify(batteryMock).launchPatriot();
+
+    }
+
 }
