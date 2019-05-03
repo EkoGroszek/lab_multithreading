@@ -18,14 +18,16 @@ public class ThreadLauncher implements RocketLauncher {
         if (executorService == null) {
             executorService = Executors.newFixedThreadPool(amount);
         }
-        executorService.execute(new Runnable() {
+        for (int i = 0; i < amount; i++) {
+            executorService.execute(new Runnable() {
 
-            @Override
-            public void run() {
-                battery.launchPatriot();
-            }
-        });
-        executorService.shutdown();
+                @Override
+                public void run() {
+                    battery.launchPatriot();
+                }
+            });
+            // executorService.shutdown();
+        }
     }
 
 }
