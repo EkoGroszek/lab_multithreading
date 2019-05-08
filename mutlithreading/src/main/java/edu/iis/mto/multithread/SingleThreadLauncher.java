@@ -1,6 +1,6 @@
 package edu.iis.mto.multithread;
 
-public class SimpleLauncher implements RocketLauncher {
+public class SingleThreadLauncher implements RocketLauncher {
 
     @Override
     public void launchRockets(int amount, PatriotBattery battery) {

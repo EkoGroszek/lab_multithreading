@@ -4,9 +4,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -23,9 +20,8 @@ public class BetterRadarTest {
     public void launchPatriotOnceWhenNoticesAScudMissle() throws InterruptedException {
         batteryMock = mock(PatriotBattery.class);
         int numberOfRockets = 10;
-        ExecutorService executorService = Executors.newFixedThreadPool(100);
-        ThreadLauncher threadLauncher = new ThreadLauncher(executorService);
-        BetterRadar radar = new BetterRadar(batteryMock, threadLauncher);
+        SingleThreadLauncher singleThreadLauncher = new SingleThreadLauncher();
+        BetterRadar radar = new BetterRadar(batteryMock, singleThreadLauncher);
         radar.setRocketsToLaunch(numberOfRockets);
         radar.notice(new Scud());
         verify(batteryMock, times(numberOfRockets)).launchPatriot();
