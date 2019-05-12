@@ -4,19 +4,34 @@ public class BetterRadar {
 
     private PatriotBattery patriotBattery;
     private int rockets;
-    private RocketLauncherOneThread rocketLauncher;
+    private RocketLauncherOneThread rocketLauncherOneThread;
+    private RocketLauncherMultiThread rocketLauncherMultiThread;
 
-    public BetterRadar(PatriotBattery patriotBattery, RocketLauncherOneThread rocketLauncher, int rockets) {
+    public BetterRadar(PatriotBattery patriotBattery, RocketLauncherOneThread rocketLauncherOneThread, int rockets) {
         this.patriotBattery = patriotBattery;
-        this.rocketLauncher = rocketLauncher;
+        this.rocketLauncherOneThread = rocketLauncherOneThread;
+        this.rockets = rockets;
+    }
+
+    public BetterRadar(PatriotBattery patriotBattery, RocketLauncherMultiThread rocketLauncherMultiThread, int rockets) {
+        this.patriotBattery = patriotBattery;
+        this.rocketLauncherMultiThread = rocketLauncherMultiThread;
         this.rockets = rockets;
     }
 
     public void notice(Scud enemyMissle) {
-        launchPatriot();
+        launchPatriotOneThread();
     }
 
-    public void launchPatriot() {
-        rocketLauncher.launchRockets(patriotBattery, rockets);
+    public void launchPatriotOneThread() {
+        rocketLauncherOneThread.launchRockets(patriotBattery, rockets);
+    }
+
+    public void noticeMulti(Scud enemyMissle) {
+        launchPatriotMultiThread();
+    }
+
+    public void launchPatriotMultiThread() {
+        rocketLauncherMultiThread.launchRockets(patriotBattery, rockets);
     }
 }
