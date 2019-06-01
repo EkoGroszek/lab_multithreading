@@ -6,8 +6,7 @@ public class TasksInOneThreadExecutor implements Executor {
 
     @Override
     public void execute(Runnable command) {
-        new Thread(command).run();
-
+        command.run();
     }
 
 }

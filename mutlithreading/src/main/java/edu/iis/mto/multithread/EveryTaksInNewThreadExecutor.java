@@ -6,7 +6,8 @@ public class EveryTaksInNewThreadExecutor implements Executor {
 
     @Override
     public void execute(Runnable command) {
-        command.run();
+        new Thread(command).run();
+
     }
 
 }
