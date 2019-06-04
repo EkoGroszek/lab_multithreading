@@ -10,7 +10,7 @@ public class BetterRadar {
         this.availableRocketsToLaunch = availableRocketsToLaunch;
     }
 
-    public void notice(){
+    public void notice(Scud scud){
         launchPatriot();
     }
 
