@@ -18,9 +18,10 @@ public class RadarTest
     public void launchPatriotOnceWhenNoticesAScudMissle()
         {
         PatriotBattery batteryMock = mock(PatriotBattery.class);
-        Radar radar = new Radar(batteryMock);
+        int numberOfPatriot = 10;
+        Radar radar = new Radar(batteryMock, numberOfPatriot);
         radar.notice(new Scud());
-        verify(batteryMock,times(1)).launchPatriot();
+        verify(batteryMock,times(numberOfPatriot)).launchPatriot();
         }
 
     }
