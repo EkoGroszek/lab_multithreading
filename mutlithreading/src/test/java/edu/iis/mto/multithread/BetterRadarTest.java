@@ -4,6 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 
@@ -12,24 +13,17 @@ import edu.iis.mto.multithread.RepeatRule.Repeat;
 public class BetterRadarTest {
     @Rule
     public RepeatRule repeatRule = new RepeatRule();
+    public PatriotBattery batteryMock;
 
     @Test
     @Repeat(times = 1000)
-    public void launchPatriotOnceWhenNoticesAScudMissile() {
-        PatriotBattery batteryMock = mock(PatriotBattery.class);
-        Radar radar = new Radar(batteryMock);
+    public void shouldLaunchPatriotOnceWhenNoticesAScudMissile(){
+        batteryMock = mock(PatriotBattery.class);
+        int numberOfRockets = 10;
+        SingleThreadLauncher singleThreadLauncher = new SingleThreadLauncher();
+        BetterRadar radar = new BetterRadar(batteryMock, singleThreadLauncher);
+        radar.setAmountOfRocketsToLaunch(numberOfRockets);
         radar.notice(new Scud());
-        verify(batteryMock).launchPatriot();
-    }
-
-    @Test
-    @Repeat(times = 1000)
-    public void shouldLaunchPatriotOnceWhenNoticeScudMissileUsingBetterRadarAndSimpleLauncher(){
-        PatriotBattery batteryMock = mock(PatriotBattery.class);
-        SimpleRocketLauncher launcher = new SimpleRocketLauncher();
-        BetterRadar radar = new BetterRadar(batteryMock, launcher);
-        radar.notice(new Scud());
-        verify(batteryMock).launchPatriot();
-
+        verify(batteryMock, times(numberOfRockets)).launchPatriot();
     }
 }
