@@ -15,7 +15,7 @@ public class RepeatRule implements TestRule {
     @Target({java.lang.annotation.ElementType.METHOD})
     public @interface Repeat {
 
-        public abstract int times();
+        int times();
     }
 
     private static class RepeatStatement extends Statement {
