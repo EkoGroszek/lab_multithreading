@@ -1,5 +1,7 @@
 package edu.iis.mto.multithread;
 
+import edu.iis.mto.multithread.Launchers.RocketLauncher;
+
 public class BetterRadar {
     private PatriotBattery patriotBattery;
     private int numberOfRockets;

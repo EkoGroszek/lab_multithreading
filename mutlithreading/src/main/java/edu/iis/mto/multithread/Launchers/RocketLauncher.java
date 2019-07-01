@@ -1,4 +1,6 @@
-package edu.iis.mto.multithread;
+package edu.iis.mto.multithread.Launchers;
+
+import edu.iis.mto.multithread.PatriotBattery;
 
 public interface RocketLauncher {
 
